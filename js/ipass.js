@@ -1,6 +1,6 @@
 window.onload = function () {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/nopass/sw.js', { scope: '/' })
+        navigator.serviceWorker.register('/nopass/sw.js', { scope: '/nopass/' })
             .then((registration) => {
                 const data = {
                     type: 'CACHE_URLS',
