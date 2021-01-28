@@ -1,4 +1,4 @@
-# iPASS
+# NOPASS
 
 NOPASS is a password manager and generator which uses SHA-3 hashing.
 
