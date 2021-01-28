@@ -9,7 +9,7 @@ window.onload = function () {
                         ...performance.getEntriesByType('resource').map((r) => r.name)
                     ]
                 };
-                registration?.installing?.postMessage(data);
+                registration?.active?.postMessage(data);
             })
             .catch((err) => console.log('SW registration FAIL:', err));
     }

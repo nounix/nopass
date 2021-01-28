@@ -5,7 +5,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('message', (event) => {
   if (event.data.type === 'CACHE_URLS') {
     event.waitUntil(
-      caches.open('resources')
+      caches.open('nopass')
         .then((cache) => {
           return cache.addAll(event.data.payload);
         })
