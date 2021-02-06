@@ -2,143 +2,29 @@
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>iPASS</title>
+    <title>NOPASS</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" type="text/css" href="./css/vendor/all.min.css">
-  <link rel="stylesheet" type="text/css" href="./css/vendor/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="./css/ipass.css">
-  <script type="text/javascript" src="./js/vendor/jquery.slim.min.js"></script>
-  <script type="text/javascript" src="./js/vendor/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="./js/vendor/sha3.min.js"></script>
-  <script type="text/javascript" src="./js/ipass.js"></script>
+    <link rel="stylesheet" type="text/css" href="./modules/_vendor/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="./modules/_vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./modules/main/ipass.css">
+    <script type="text/javascript" src="./modules/_vendor/scripts/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="./modules/_vendor/scripts/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="./modules/_vendor/scripts/sha3.min.js"></script>
+    <script type="text/javascript" src="./modules/login/login.js"></script>
 </head>
 
 <body>
-  <!-- Main -->
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-
-        <!-- Locked view -->
-        <div id="locked-view" class="main card my-5 text-center">
-          <div class="card-header">
-            <i class="btn btn-dark fa fa-lock"></i>
-          </div>
-
-          <div class="card-body">
-            <div class="input-group">
-              <input autofocus id="master-password" type="password" class="form-control" placeholder="Master password">
-              <div class="input-group-append">
-                <button id="password-state" class="btn btn-outline-secondary fa fa-eye" type="button"></button>
-              </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div id="modules"></div>
             </div>
-          </div>
-
-          <div class="card-footer">
-            <button id="login" type="button" class="btn btn-dark btn-block text-uppercase">Login</button>
-          </div>
         </div>
-
-        <!-- Unlocked view -->
-        <div id="unlocked-view" class="main card my-5 text-center d-none">
-          <div class="card-header">
-            <button id="logout" class="btn btn-dark fa fa-lock-open" type="button"></button>
-          </div>
-
-          <div class="card-body">
-            <div class="input-group">
-              <input id="account" type="text" class="form-control" placeholder="Account">
-              <div class="input-group-append">
-                <button id="openSettings" type="button" class="btn btn-outline-secondary fa fa-cog"></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-footer">
-            <div class="btn-group d-flex" role="group" aria-label="Basic example">
-              <button id="copy-pwd" class="btn btn-dark fa fa-clipboard" type="button"></button>
-              <a id="show-pwd" tabindex="0" class="btn btn-dark fa fa-eye" role="button" data-toggle="popover"
-                data-trigger="focus" data-placement="top"></a>
-              <button type="button" class="btn btn-dark fa fa-sticky-note" data-toggle="modal"
-                data-target="#exampleModalCenter"></button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-
-  <!-- Settings modal -->
-  <div id="settings" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Settings</h5>
-          <button type="button" class="close fa fa-times" data-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <div class="modal-body">
-            <div class="input-group">
-              <input id="account-settings" type="text" class="form-control" placeholder="Account">
-              <div class="input-group-append">
-                <button id="remove-account" type="button" class="btn btn-outline-secondary fa fa-minus"></button>
-                <button id="add-account" type="button" class="btn btn-outline-secondary fa fa-plus"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <table class="table table-dark table-striped">
-            <thead>
-              <tr>
-                <th>Account</th>
-                <th>Version</th>
-                <th>Length</th>
-                <th>Special characters</th>
-              </tr>
-            </thead>
-            <tbody id="accounts">
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Secrets modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Notes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <textarea class="form-control" rows="5"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast -->
-  <div style="position: absolute; top: 1rem; right: 1rem;">
-    <div class="toast bg-dark text-white" role="alert" aria-live="assertive" aria-atomic="true" data-delay="1000">
-      <div class="toast-body">Copied</div>
-    </div>
-  </div>
 </body>
 
 </html>
