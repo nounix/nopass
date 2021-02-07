@@ -8,13 +8,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="./modules/_vendor/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="./modules/_vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./modules/main/ipass.css">
     <script type="text/javascript" src="./modules/_vendor/scripts/jquery.slim.min.js"></script>
-    <script type="text/javascript" src="./modules/_vendor/scripts/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="./modules/_vendor/scripts/sha3.min.js"></script>
-    <script type="text/javascript" src="./modules/login/login.js"></script>
+    <script type="text/javascript" src="./modules/_misc/utils.js"></script>
 </head>
 
 <body>
@@ -25,6 +20,9 @@
             </div>
         </div>
     </div>
+    <script type="module">
+        utils.js.load('../login/login.js')
+    </script>
 </body>
 
 </html>

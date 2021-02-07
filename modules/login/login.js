@@ -1,10 +1,12 @@
-$(document).ready(function () {
-    // Load login view
-    fetch("modules/login/login.html").then(c => c.text()).then(c => $("#modules").html(c)).then(() => init());
-});
-
-function init() {
+export default async function () {
     'use strict';
+
+    utils.css.load('./modules/_vendor/css/all.min.css')
+    utils.css.load('./modules/_vendor/css/bootstrap.min.css')
+    utils.css.load('./modules/_misc/global.css')
+    await utils.js.load('../_vendor/scripts/bootstrap.bundle.min.js')
+    await utils.js.load('../_vendor/scripts/sha3.min.js')
+    await utils.html.load('./modules/login/login.html')
 
     // Init buttons
     $("#password-state").click({ input: $('#master-password') }, togglePasswordVisibility);
@@ -30,8 +32,6 @@ function init() {
 
         event.preventDefault()
 
-        import('../main/ipass.js').then(module => {
-            module.init(sha3_512(event.data.input.val()));
-        });
+        utils.js.load('../main/main.js', sha3_512(event.data.input.val()))
     }
 }
