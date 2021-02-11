@@ -12,3 +12,15 @@ body {
   font-weight: bold;
   transition: all 0.2s;
 }
+
+.modal {
+  text-align: center;
+}
+
+.modal-dialog {
+  max-width: 100%;
+}
+
+.modal-content {
+  background: #454d55;
+}

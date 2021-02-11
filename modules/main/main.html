@@ -6,9 +6,9 @@
     <div class="card-body">
         <div class="input-group">
             <datalist id="asdl"></datalist>
-            <input id="account" list="asdl" type="text" class="form-control" placeholder="Account">
+            <input autofocus id="account" list="asdl" type="text" class="form-control" placeholder="Account">
             <div class="input-group-append">
-                <button id="openSettings" type="button" class="btn btn-outline-secondary fa fa-cog"></button>
+                <button id="add-account" type="button" class="btn btn-outline-secondary fa fa-plus"></button>
             </div>
         </div>
     </div>
@@ -18,8 +18,7 @@
             <button id="copy-pwd" class="btn btn-dark fa fa-clipboard" type="button"></button>
             <a id="show-pwd" tabindex="0" class="btn btn-dark fa fa-eye" role="button" data-toggle="popover"
                 data-trigger="focus" data-placement="top"></a>
-            <button type="button" class="btn btn-dark fa fa-sticky-note" data-toggle="modal"
-                data-target="#exampleModalCenter"></button>
+            <button id="openSettings" type="button" class="btn btn-dark fa fa-cog"></button>
         </div>
     </div>
 </div>

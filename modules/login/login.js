@@ -8,7 +8,8 @@ export default async function () {
     await utils.js.load('../_vendor/scripts/sha3.min.js')
     await utils.html.load('./modules/login/login.html')
 
-    // Init buttons
+    // Init
+    $("#master-password").focus()
     $("#password-state").click({ input: $('#master-password') }, togglePasswordVisibility);
     $("#master-password").keydown({ input: $('#master-password') }, login);
     $("#login").click({ input: $('#master-password') }, login);

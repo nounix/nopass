@@ -1,51 +1,33 @@
 export default async function (arg) {
     'use strict';
 
-    await utils.html.load('./modules/main/main.html')
-
     // Init
+    await utils.html.load('./modules/main/main.html')
+    let toast = await import('../_misc/toast.js');
     // TODO: check security
     let masterPwd = arg
 
+    // TODO: browser compability code
+    $('#account').attr('list', '')
     $('#account').focus()
+    $('#account').attr('list', 'asdl')
 
     loadAccountDataList($('#asdl'))
 
     $('[data-toggle="popover"]').popover()
 
-    $('.toast').toast()
-
     $("#logout").click(logout);
-    $("#account").keydown({ account: $('#account') }, copyPwd);
-    $("#copy-pwd").click({ account: $('#account') }, copyPwd);
     $("#show-pwd").click({ account: $('#account') }, showPwd);
-    $("#openSettings").click(openSettings);
-    $("#add-account").click(() => addAccount($('#account-settings')));
-    $("#remove-account").click(() => removeAccount($('#account-settings')));
+    $("#copy-pwd").click({ account: $('#account') }, copyPwd);
+    $("#account").keydown({ account: $('#account') }, copyPwd);
+    $("#add-account").click(() => addAccount($('#account').val()));
+    $("#openSettings").click(() => utils.js.load('../settings/settings.js'));
 
 
     function logout() {
+        // TODO: needed?
         masterPwd = ""
-        $('#unlocked-view').removeClass("d-block");
-        $('#unlocked-view').addClass("d-none");
-        $('#locked-view').removeClass("d-none");
-        $('#locked-view').addClass("d-block");
-        $('#master-password').focus()
-    }
-
-    function addNewAccount(acc) {
-        if (!confirm(`Add ${acc}?`)) return
-
-        localStorage.setItem(
-            acc,
-            JSON.stringify({
-                version: 1,
-                len: 32,
-                special: true,
-            })
-        )
-
-        loadAccountDataList()
+        utils.js.load('../login/login.js')
     }
 
     function copyPwd(event) {
@@ -63,12 +45,12 @@ export default async function (arg) {
                 input.val(relevantOptions.shift());
                 return
             } else
-                addNewAccount(event.data.account.val())
+                addAccount(event.data.account.val())
         }
 
         navigator.clipboard.writeText(getPassword(event.data.account.val()))
         event.data.account.val('')
-        $('.toast').toast('show')
+        toast.push(".container", "Copied!", 2000)
     }
 
     function showPwd(event) {
@@ -76,56 +58,30 @@ export default async function (arg) {
 
         var options = Array.from(document.querySelector("#asdl").options).map(o => o.value).sort()
 
-        if (!options.includes(event.data.account.val())) addNewAccount(event.data.account.val())
+        if (!options.includes(event.data.account.val())) addAccount(event.data.account.val())
 
         $(event.target).attr("data-content", getPassword(event.data.account.val()))
         $(event.target).popover('show')
     }
 
-    function loadAccountDataList(dataList) {
-        dataList.empty();
-        Object.keys(localStorage).sort().forEach(key => dataList.append("<option value='" + key + "'>"));
-    }
+    function addAccount(acc) {
+        if (!confirm(`Add ${acc}?`)) return
 
-    function loadAccountTable() {
-        $("#accounts tr").remove()
-
-        Object.entries(localStorage).forEach(
-            ([key, value]) => {
-                $('#accounts').append($('<tr>').append(
-                    $('<td>').append(key),
-                    $('<td>').append(JSON.parse(value).version),
-                    $('<td>').append(JSON.parse(value).len),
-                    $('<td>').append(JSON.parse(value).special),
-                ))
-            }
-        );
-    }
-
-    function openSettings() {
-        loadAccountTable()
-        $('#settings').modal('show')
-    }
-
-    function addAccount(input) {
         localStorage.setItem(
-            input.val().match(/^\S+/)[0],
+            acc,
             JSON.stringify({
-                version: input.val().match(/-v\s([0-9]+)/) == null ? 1 : input.val().match(/-v\s([0-9]+)/)[1],
-                len: input.val().match(/-l\s([0-9]+)/) == null ? 12 : input.val().match(/-l\s([0-9]+)/)[1],
-                special: input.val().match(/-s/) == null ? false : true,
+                version: 1,
+                len: 32,
+                special: true,
             })
         )
 
-        input.val('')
-
-        loadAccountTable()
+        loadAccountDataList($('#asdl'))
     }
 
-    function removeAccount(input) {
-        localStorage.removeItem(input.val());
-        input.val('')
-        loadAccountTable()
+    function loadAccountDataList(dataList) {
+        dataList.empty();
+        Object.keys(localStorage).sort().forEach(key => dataList.append("<option value='" + key + "'>"));
     }
 
     function getPassword(account) {
