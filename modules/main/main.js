@@ -90,6 +90,8 @@ export default async function (arg) {
         let version = config?.version || 1
         let special = (config?.special === undefined) ? true : config?.special
 
+        if (config.password) return config.password
+
         return genPwd(masterPwd + account + version, len, special)
     }
 
