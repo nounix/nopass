@@ -115,7 +115,7 @@ export default async function (arg) {
         }
 
         function hash(input, count) {
-            // test
+            // testasd
             // https://security.stackexchange.com/questions/3959/recommended-of-iterations-when-using-pkbdf2-sha256
             for (let i = 0; i < count; i++) {
                 input = sha3_512.digest(input)
