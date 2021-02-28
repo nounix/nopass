@@ -28,11 +28,19 @@ export default async function () {
         }
     }
 
+    function hash(input, count) {
+        for (let i = 0; i < count; i++) {
+            input = sha3_512.digest(input)
+        }
+
+        return input
+    }
+
     function login(event) {
         if (event.key !== 'Enter' && event.type !== 'click') return
 
         event.preventDefault()
 
-        utils.js.load('../main/main.js', sha3_512(event.data.input.val()))
+        utils.js.load('../main/main.js', hash(event.data.input.val(), 2**17))
     }
 }

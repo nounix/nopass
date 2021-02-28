@@ -112,6 +112,15 @@ export default async function (arg) {
             return tr.map(num => tval[tu.indexOf(num)])
         }
 
+        function hash(input, count) {
+            // https://security.stackexchange.com/questions/3959/recommended-of-iterations-when-using-pkbdf2-sha256
+            for (let i = 0; i < count; i++) {
+                input = sha3_512.digest(input)
+            }
+
+            return input
+        }
+
         let numbers = tableFromCharCodeRange(48, 57)
         let capitalLetters = tableFromCharCodeRange(65, 90)
         let smallLetters = tableFromCharCodeRange(97, 122)
@@ -119,8 +128,8 @@ export default async function (arg) {
         let allowedChars = [numbers, capitalLetters, smallLetters]
         if (special) allowedChars.push(specialChars)
 
-        // Generate random numbers from hash and hash of hash
-        let tr = [...sha3_512.digest(input), ...sha3_512.digest(sha3_512.digest(input))]
+        // Generate random numbers from hash of hash
+        let tr = [...hash(input, 2**16), ...hash(input, 2**16+1)]
 
         // Generate sorted and unique numbers from random numbers table
         let tu = [...new Set(tr.filter(n => n).sort((a, b) => a - b))];
