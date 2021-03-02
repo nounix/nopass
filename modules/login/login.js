@@ -28,19 +28,20 @@ export default async function () {
         }
     }
 
-    function hash(input, count) {
-        for (let i = 0; i < count; i++) {
-            input = sha3_512.digest(input)
-        }
-
-        return input
-    }
-
     function login(event) {
         if (event.key !== 'Enter' && event.type !== 'click') return
 
         event.preventDefault()
 
-        utils.js.load('../main/main.js', hash(event.data.input.val(), 2**17))
+        utils.js.load('../main/main.js', hash(event.data.input.val()))
+    }
+
+    // https://security.stackexchange.com/questions/3959/recommended-of-iterations-when-using-pkbdf2-sha256
+    function hash(input) {
+        for (let i = 0; i < 2**17; i++) {
+            input = sha3_512.digest(input)
+        }
+
+        return sha3_512(input)
     }
 }
