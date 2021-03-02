@@ -23,6 +23,22 @@
         </div>
     </div>
     <script type="module">
+        window.onload = function () {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/nopass/sw.js', { scope: '/nopass/' })
+                    .then((registration) => {
+                        const data = {
+                            type: 'CACHE_URLS',
+                            payload: [
+                                location.href,
+                                ...performance.getEntriesByType('resource').map((r) => r.name)
+                            ]
+                        };
+                        registration?.active?.postMessage(data);
+                    })
+                    .catch((err) => console.log('SW registration FAIL:', err));
+            }
+        }
         utils.js.load('../login/login.js')
     </script>
 </body>
