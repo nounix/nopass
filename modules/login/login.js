@@ -8,6 +8,23 @@ export default async function () {
     await utils.js.load('../_vendor/scripts/sha3.min.js')
     await utils.html.load('./modules/login/login.html')
 
+    window.onload = function () {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/nopass/sw.js', { scope: '/nopass/' })
+                .then((registration) => {
+                    const data = {
+                        type: 'CACHE_URLS',
+                        payload: [
+                            location.href,
+                            ...performance.getEntriesByType('resource').map((r) => r.name)
+                        ]
+                    };
+                    registration?.active?.postMessage(data);
+                })
+                .catch((err) => console.log('SW registration FAIL:', err));
+        }
+    }
+
     // Init
     $("#master-password").focus()
     $("#password-state").click({ input: $('#master-password') }, togglePasswordVisibility);

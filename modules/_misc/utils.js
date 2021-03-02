@@ -22,24 +22,4 @@ window.utils = {
     js: {
         load: (file, arg) => import(file).then(module => module.default?.(arg))
     },
-
-    sw: {
-        asd: window.onload = function () {
-            return
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/nopass/sw.js', { scope: '/nopass/' })
-                    .then((registration) => {
-                        const data = {
-                            type: 'CACHE_URLS',
-                            payload: [
-                                location.href,
-                                ...performance.getEntriesByType('resource').map((r) => r.name)
-                            ]
-                        };
-                        registration?.active?.postMessage(data);
-                    })
-                    .catch((err) => console.log('SW registration FAIL:', err));
-            }
-        }
-    }
 }
