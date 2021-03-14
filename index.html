@@ -35,7 +35,6 @@
                             type: 'CACHE_URLS',
                             payload: [
                                 location.href,
-                                location.href + "index.html",
                                 ...performance.getEntriesByType('resource').map((r) => r.name)
                             ]
                         };

@@ -2,7 +2,7 @@
     "name": "NOPASS Progressive Web App",
     "short_name": "NOPASS",
     "description": "NOPASS is a password manager and generator which uses SHA-3 hashing.",
-    "start_url": "./index.html",
+    "start_url": "./",
     "display": "fullscreen",
     "theme_color": "#123050",
     "background_color": "#123050",
