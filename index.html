@@ -29,7 +29,7 @@
     <script type="module">
         window.onload = function () {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/nopass/sw.js', { scope: '/nopass/' })
+                navigator.serviceWorker.register('./sw.js', { scope: './' })
                     .then((registration) => {
                         const data = {
                             type: 'CACHE_URLS',
