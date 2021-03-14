@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="NOPASS is a password manager and generator which uses SHA-3 hashing.">
     <meta name="keywords" content="password sha3 pwa">
-    
+
     <title>NOPASS</title>
 
     <link rel="manifest" href="./manifest.json">
@@ -27,9 +27,8 @@
         </div>
     </div>
     <script type="module">
-        window.onload = function () {
-            if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js')
-        }
+        if ('serviceWorker' in navigator) window.onload = () => navigator.serviceWorker.register('./sw.js')
+        
         utils.js.load('../login/login.js')
     </script>
 </body>
