@@ -1,0 +1,40 @@
+plugins {
+    // Apply the application plugin to add support for building an application
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on
+    compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.61'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+// Define the main class for the application
+mainClassName = 'ipass.App'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ipass.App'
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+}
+
+task gen() {
+    doLast {
+        exec {
+            executable "sh"
+            args "-c", "cat ./util/stub.sh ./build/libs/*.jar > app && chmod +x app"
+        }
+    }
+}

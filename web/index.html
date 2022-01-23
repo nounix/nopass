@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NOPASS is a password manager and generator which uses SHA-3 hashing.">
+    <meta name="keywords" content="password sha3 pwa">
+
+    <title>NOPASS</title>
+
+    <link rel="manifest" href="./manifest.json">
+
+    <link rel="icon" type="image/png" href="./icons/favicon.png">
+    <link rel="apple-touch-icon" href="./icons/apple.png">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto my-5 text-center">
+                <div id="modules"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './modules/_misc/utils.js';
+
+        if ('serviceWorker' in navigator) { window.onload = () => navigator.serviceWorker.register('./sw.js'); }
+
+        utils.css.load('./modules/_vendor/css/all.min.css');
+        utils.css.load('./modules/_vendor/css/bootstrap.min.css');
+        utils.css.load('./modules/_misc/global.css');
+        await utils.js.load('../_vendor/scripts/bootstrap.bundle.min.js');
+        await utils.js.load('../_vendor/scripts/sha3.min.js');
+
+        utils.js.load('../login/login.js');
+    </script>
+</body>
+
+</html>

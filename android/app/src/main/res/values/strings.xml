@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">iPASS</string>
+    <string name="label_master">Set master password!</string>
+    <string name="label_account">Choose Account!</string>
+    <string name="btn_pwd_show">Show</string>
+    <string name="btn_pwd_hide">Hide</string>
+    <string name="btn_notes_show">Notes</string>
+    <string name="btn_notes_save">Save</string>
+    <string name="error_file">Could not read file!</string>
+    <string name="error_decrypt">Could not decrypt file!</string>
+    <string name="cb_copy">Password copied to Clipboard!</string>
+    <string name="alert_title">iPASS - Warning</string>
+    <string name="alert_message">You are going to overwrite or create notes!\nContinue?</string>
+    <string name="alert_positive">Yes</string>
+    <string name="alert_negative">No</string>
+</resources>

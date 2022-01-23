@@ -1,0 +1,26 @@
+body {
+  background: #123050;
+}
+
+.main.card {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn.fa {
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.modal {
+  text-align: center;
+}
+
+.modal-dialog {
+  max-width: 100%;
+}
+
+.modal-content {
+  background: #454d55;
+}

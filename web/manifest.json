@@ -1,0 +1,17 @@
+{
+  "short_name": "NOPASS",
+  "name": "NOPASS Progressive Web App",
+  "description": "NOPASS is a password manager and generator which uses SHA-3 hashing.",
+  "display": "fullscreen",
+  "theme_color": "#123050",
+  "background_color": "#123050",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "./icons/android.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

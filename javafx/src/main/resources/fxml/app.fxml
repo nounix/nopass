@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="gridPane"
+          xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="ipass.controller.FXMLController" hgap="10"
+          vgap="10">
+    <padding>
+        <Insets top="10" left="10" bottom="10" right="10"/>
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="50.0" halignment="CENTER"/>
+        <ColumnConstraints percentWidth="50.0" halignment="CENTER"/>
+    </columnConstraints>
+    <Label fx:id="label" text="Set master password!" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+    <PasswordField fx:id="passwordField" onAction="#getPassword" GridPane.rowIndex="1" GridPane.columnSpan="2"/>
+    <Button fx:id="showBtn" onAction="#togglePassword" text="Show" GridPane.rowIndex="2" maxWidth="Infinity" visible="false"/>
+    <Button fx:id="accListBtn" onAction="#toggleNotes" text="Notes" GridPane.rowIndex="2" GridPane.columnIndex="1"
+            maxWidth="Infinity" visible="false"/>
+    <ScrollPane fx:id="accListPane" GridPane.rowIndex="3" GridPane.columnSpan="2" visible="false">
+        <TextArea fx:id="accListArea"/>
+    </ScrollPane>
+</GridPane>
