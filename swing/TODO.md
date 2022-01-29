@@ -1,0 +1,4 @@
+- check timer clear cb to not override
+- create make file which builds and add payload
+- stop window moving up when open notes
+- save notes in docker version

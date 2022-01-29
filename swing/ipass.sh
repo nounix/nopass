@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# TODO: save notes
-
 nc -z localhost 31313
 
 [ $? -eq 0 ] || docker run \

@@ -1,0 +1,1 @@
+- build aritfact on github, with badges for work in progress or not working/building etc.
